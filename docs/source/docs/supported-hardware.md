@@ -17,7 +17,7 @@
 
 |              Device               |                          URL                          |
 | --------------------------------- | ----------------------------------------------------- |
-| ![FT232BL](files/FT232BL_transparent.png) | https://www.aliexpress.com/item/1005002919716645.html |
+| ![FT232BL](files/FT232BL_transparent.png) | https://www.aliexpress.com/item/1005002919716645.html (RECOMMENDED) |
 | ![FT232RL](files/ft232rl.png) | https://www.aliexpress.com/item/32650148276.html |
 
 
