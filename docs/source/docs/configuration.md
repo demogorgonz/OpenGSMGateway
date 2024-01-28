@@ -64,7 +64,7 @@ ___
 
 ___
 
-# Server Configuration
+## Server Configuration
 
 > server.ps1
 ```powershell
