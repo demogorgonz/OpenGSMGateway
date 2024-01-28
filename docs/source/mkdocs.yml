@@ -1,0 +1,149 @@
+﻿site_name: Open GSM Gateway
+site_description: Selfhost Open GSM Gateway API for SMS & Call
+site_author: FilipS
+copyright: © Open GSM Gateway 2024
+
+repo_url: https://github.com/demogorgonz/opengsmgateway
+edit_uri: edit/master/source/docs
+
+dev_addr: 0.0.0.0:8000
+
+theme:
+    custom_dir: overrides
+    features:
+        - navigation.expand
+        - navigation.top
+        - navigation.indexes
+        - navigation.footer
+        - content.action.edit
+        - search.highlight
+        - search.suggest
+    name: material
+    palette:
+        - scheme: slate
+          toggle:
+              icon: material/lightbulb-outline
+              name: Switch to light mode
+        - scheme: default
+          toggle:
+              icon: material/lightbulb
+              name: Switch to dark mode
+
+extra_css:
+  - _extra/css/extra.css
+  - _extra/css/pdf.css
+
+extra_javascript:
+  - _extra/js/mathjax.js
+  - _extra/js/tablesort.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js
+
+
+extra:
+    url_prefix: !ENV MM_DOCS_URL_PREFIX
+    version: 0.1
+    # date format: '%d.%m.%Y %H:%M'
+    company:
+        name: Acme
+    social:
+    - icon: dummy value to show social override
+
+# https://github.com/Python-Markdown/markdown/wiki/Third-Party-Extensions
+markdown_extensions:
+    # PyMdown extensions: https://python-markdown.github.io/extensions
+    - toc:
+        permalink: ↵
+    - abbr
+    - admonition
+    - attr_list
+    - codehilite
+    - def_list
+    - footnotes
+    - md_in_html
+    - meta
+    - sane_lists
+    - tables
+
+    # PyMdown Extensions extensions: https://facelessuser.github.io/pymdown-extensions/
+    - pymdownx.arithmatex:
+        generic: true
+    - pymdownx.betterem:
+        smart_enable: all
+    - pymdownx.caret
+    - pymdownx.critic
+    - pymdownx.details
+    - pymdownx.emoji:
+        emoji_index: !!python/name:material.extensions.emoji.twemoji
+        emoji_generator: !!python/name:material.extensions.emoji.to_svg
+    - pymdownx.inlinehilite
+    - pymdownx.keys
+    - pymdownx.magiclink
+    - pymdownx.mark
+    - pymdownx.superfences:
+        custom_fences:
+          - name: mermaid
+            class: mermaid
+            format: !!python/name:pymdownx.superfences.fence_code_format
+    - pymdownx.smartsymbols
+    - pymdownx.tabbed:
+        alternate_style: true
+    - pymdownx.tasklist:
+        custom_checkbox: true
+    - pymdownx.tilde
+
+    # Extra extensions
+    - markdown_include.include:
+        base_path: inc
+    - plantuml_markdown
+
+plugins:
+  - offline
+  - exclude:
+      glob: _*.md
+  - macros:
+      include_dir: inc
+  - search:
+      language: en    # https://squidfunk.github.io/mkdocs-material/getting-started/#language
+  - tags:
+      tags_file: tags.md
+  - pdf-export:
+      verbose: false
+      media_type: print
+      enabled_if_env: MM_DOCS_ENABLE_PDF_EXPORT
+      combined: false
+  - print-site: #https://github.com/timvink/mkdocs-print-site-plugin/blob/master/docs/options.md
+      add_to_navigation: false
+      print_page_title: 'Print Site'
+      # Banner and cover
+      add_print_site_banner: true
+      print_site_banner_template: pdf/banner.tpl
+      add_cover_page: true
+      cover_page_template: pdf/cover_page.tpl
+      # Table of contents
+      add_table_of_contents: true
+      toc_title: Content
+      toc_depth: 2
+      # Content-related
+      add_full_urls: true
+      enumerate_headings: false
+      enumerate_figures: true
+      include_css: false
+      enabled: true
+      exclude:
+nav:
+- Home: index.md
+- Hardware:
+    - Supported Hardware: supported-hardware.md 
+    - Wiring: wiring.md
+- Getting Started:     
+    - Prerequisites: prerequisites.md
+    - Installation: installation.md
+    - Configuration: configuration.md
+    - CLI: cli.md
+    - Running as service: service.md
+    - Troubleshooting: troubleshoot.md
+- API: api.md
+- Donate: donate.md
+- About OGG: about.md

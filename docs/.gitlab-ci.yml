@@ -1,0 +1,44 @@
+variables:
+  GIT_DEPTH: 0
+  GIT_CLEAN_FLAGS: -ffdx --exclude node_modules
+
+  ROOT: docs
+  IB: ./Invoke-Build.ps1
+
+  MM_DOCS_VERSION: ''
+  MM_DOCS_ENABLE_PDF_EXPORT: 0
+
+stages:
+  - build
+  - deploy
+
+.build:
+  stage: build
+  tags: [ docker, linux, pwsh ]
+  artifacts:
+    paths:
+      - $ROOT/source/site
+      - $ROOT/source/pdf/*.pdf
+    expire_in: 4 weeks
+  only: [ main ]
+
+build website:
+  extends: .build
+  tags: [ docker, linux, pwsh ]
+  script:
+    - cd $ROOT
+    - pwsh
+    - export MM_DOCS_URL_PREFIX="https://opengsmgateway.com"
+    - pwsh -File $IB Build
+
+deploy website:
+  environment:
+    name: Deploy/docs
+    url:  https://opengsmgateway.com
+  stage: deploy
+  tags: [ docker, linux, pwsh ]
+  script:
+    - cd $ROOT
+    - scp -r source/site/* root@192.168.1.25:/var/www/ogg/
+  only: [ main ]
+  dependencies: [ build website ]

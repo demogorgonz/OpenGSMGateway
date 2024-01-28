@@ -1,0 +1,88 @@
+img {
+    box-shadow: 2px 2px 10px 2px #888888;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+img.emojione {
+    box-shadow: none;
+    display: inline;
+}
+
+.updated {
+    display: block;
+    margin-top: 2em;
+    color: gray;
+}
+
+.pl1 {
+    padding-left: 1em;
+}
+
+.pr1 {
+    padding-right: 1em;
+}
+
+.pl2 {
+    padding-left: 2em;
+}
+
+.pr2 {
+    padding-right: 2em;
+}
+
+.pl3 {
+    padding-left: 3em;
+}
+
+.pr3 {
+    padding-right: 3em;
+}
+
+.bblue {
+    background-color: blue;
+}
+
+.bred {
+    background-color: red;
+}
+
+.byello {
+    background-color: yellow;
+}
+
+.byello {
+    background-color: green;
+}
+
+.red {
+    color: red;
+}
+
+.yellow {
+    color: yellow;
+}
+
+.blue {
+    color: blue;
+}
+
+.green {
+    color: green;
+}
+
+
+/*
+article OL {
+    counter-reset: item
+}
+
+article LI {
+    display: block
+}
+
+article LI:before {
+    content: counters(item, ".") " ";
+    counter-increment: item
+} */
