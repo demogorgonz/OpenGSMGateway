@@ -18,7 +18,7 @@ ___
 
 # CLI add2queue
 
-If you are running OGG as service, you can add actions to queue.
+If running OGG as service, you can add actions to queue.
 
 ## add2queue Call
 
