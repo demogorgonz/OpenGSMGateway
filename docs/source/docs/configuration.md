@@ -97,7 +97,7 @@ Start-PodeServer -Threads 4 -RootPath "$PWD" {
 }
 ```
 
-Pode server is configured to run with 4 threads.
+Pode server is configured to run with 4 threads. [More info](https://pode.readthedocs.io/en/stable/Tutorials/Threading/ServerThreads/)
 
 Currently server is not parameterized and features can't be excluded with config, but feel free to comment out any feature that is not wanted.
 
