@@ -141,8 +141,10 @@ nav:
     - Installation: installation.md
     - Configuration: configuration.md
     - CLI: cli.md
+    - API: api.md
     - Running as service: service.md
     - Troubleshooting: troubleshoot.md
-- API: api.md
+- Integrations:
+    - Rundeck: rundeck.md    
 - Donate: donate.md
 - About OGG: about.md
