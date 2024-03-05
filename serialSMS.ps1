@@ -10,7 +10,7 @@ cd $PSScriptRoot
 . "$PSScriptRoot\config.ps1"
 
 if ($IsWindows) {
-    $port = New-Object System.IO.Ports.SerialPort COM$(Get-WMIObject Win32_PnPEntity | where {$_.Name -like 'USB Serial Port*' } |Select-Object Name | select-string \d+ | % { $_.matches.Value }), $BaudRate, None, 8, one
+    $port = new-Object System.IO.Ports.SerialPort COM$(get-ciminstance Win32_PnPEntity | where {$_.Name -like 'USB Serial Port*' } |Select-Object Name | select-string \d+ | % { $_.matches.Value }), $BaudRate, None, 8, one
     $port.open()
     $port.Write("AT+CMGF=1`r")
     Start-Sleep 5
