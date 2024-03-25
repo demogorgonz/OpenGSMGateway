@@ -23,4 +23,10 @@ Linux might have USB power manager which could disable USB2TTL adapter. To disab
 
 ___
 
+On Windows it is mandatory to disable `USB selective suspend setting`, to prevent OS from disabling USB device after some time.
+
+![](files/WinUSBPower.png)
+
+___
+
 {% include 'footer.md' %}
