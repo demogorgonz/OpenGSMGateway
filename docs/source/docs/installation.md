@@ -38,4 +38,8 @@ ___
 ___
 
 
+## Troubleshooting
+
+Make sure to check Troubleshooting section for configuration of [USB power management](troubleshoot.md)
+
 {% include 'footer.md' %}
