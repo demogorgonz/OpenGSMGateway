@@ -1,4 +1,4 @@
-﻿# Wiring
+﻿# Wiring SIM800L
 
 !!! danger "Make sure to switch to 5V on USB2TTL serial adapter" 
 
@@ -12,8 +12,10 @@
 | RX  | to | TX  |
 | TX  | to | RX  |
 
-![wiring](files/WiringFT232BL-A6.png)
 
+## TODO
 
+- Diagram
+- Pictures with capacitor
 
 {% include 'footer.md' %}

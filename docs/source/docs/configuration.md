@@ -10,6 +10,9 @@ $Account = "alert@example.com"
 $Password = "P@ssw0rd"
 $MoveMailToFolder = "Junk"
 
+# Model Configuration (A6PRO, SIM800L) 
+$Model = "A6PRO"
+
 # Call
 $CallDuration = "30"
 
@@ -45,6 +48,13 @@ ___
 
 - Script is moving processed email to defined IMAP folder.
 
+___
+
+## Model Configuration
+
+### $Model
+
+- Select your device model for compatible syntax. Check [Supported Hardware](./supported-hardware.md)
 ___
 
 ## Call
