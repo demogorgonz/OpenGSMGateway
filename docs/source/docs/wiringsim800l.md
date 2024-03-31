@@ -12,6 +12,8 @@
 | RX  | to | TX  |
 | TX  | to | RX  |
 
+![wiring](files/WiringSIM800L.drawio.png)
+
 ___
 
 ## Additional power information
@@ -26,10 +28,5 @@ ___
 | VCC | to | VCC |
 |:---:|:--:|:---:|
 | GND | to | GND |
-
-## TODO
-
-- Diagram
-- Pictures with capacitor
 
 {% include 'footer.md' %}
