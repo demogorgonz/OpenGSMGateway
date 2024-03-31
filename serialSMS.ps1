@@ -25,7 +25,7 @@ elseif ($IsLinux) {
     $port = New-Object System.IO.Ports.SerialPort /dev/$device, $BaudRate, None, 8, one
 }
 elseif ($IsMacOS) {
-    Write-Host "macOS"
+    Write-Host "MacOS"
     # TODO - needs testing
 }
 $port.open()

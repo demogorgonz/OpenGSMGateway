@@ -13,6 +13,9 @@ $MoveMailToFolder = "Junk"
 # Model Configuration (A6PRO, SIM800L) 
 $Model = "A6PRO"
 
+# UTF Support
+$UTF = $false
+
 # Call
 $CallDuration = "30"
 
@@ -56,6 +59,14 @@ ___
 
 - Select your device model for compatible syntax. Check [Supported Hardware](./supported-hardware.md)
 ___
+
+## UTF Support
+
+### $UTF
+
+- `$false` or `$true`, however not all hardware support UCS2 over CSCS.
+  - If disabled character limit is 160 
+  - If enabled limit is 70 and will accept UTF8 characters.
 
 ## Call
 
