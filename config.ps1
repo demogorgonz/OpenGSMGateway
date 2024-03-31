@@ -9,6 +9,9 @@ $MoveMailToFolder = "Junk"
 # Model Configuration (A6PRO, SIM800L) 
 $Model = "A6PRO"
 
+# UTF Support
+$UTF = $false
+
 # Call
 $CallDuration = "30"
 

@@ -9,6 +9,14 @@ cd $PSScriptRoot
 # Import config
 . "$PSScriptRoot\config.ps1"
 
+# UTF
+
+if ($UTF) { 
+    . "$PSScriptRoot\ConvertTo-HexString.ps1" 
+    $numberHEX = $($number | ConvertTo-HexString -Encoding BigEndianUnicode -Delimiter '')
+    $messageHEX = $($message | ConvertTo-HexString -Encoding BigEndianUnicode -Delimiter '')
+}
+
 if ($IsWindows) {
     $port = new-Object System.IO.Ports.SerialPort COM$(Get-CimInstance Win32_PnPEntity | where {$_.Name -like 'USB Serial Port*' } |Select-Object Name | select-string \d+ | % { $_.matches.Value }), $BaudRate, None, 8, one
 }
@@ -24,11 +32,26 @@ $port.open()
 $port.Write("AT+CMGF=1`r")
 Start-Sleep 5
 $port.ReadLine()
-$port.Write("AT+CMGS=`"$number`"`r")
-start-sleep 1
-$port.ReadLine()
-$port.Write("$message`r")
-$port.ReadLine()
+If ($UTF) {
+    $port.Write("AT+CSCS=`"UCS2`"`r")
+    $port.ReadLine()
+    Start-Sleep 1
+    $port.Write("AT+CSMP=17,168,0,8`r")
+    $port.ReadLine()
+    Start-Sleep 1
+    $port.Write("AT+CMGS=`"$numberHEX`"`r")
+    Start-Sleep 1
+    $port.Write("$messageHEX`r")
+    $port.ReadLine()
+
+}
+else {
+    $port.Write("AT+CMGS=`"$number`"`r")
+    Start-Sleep 1
+    $port.ReadLine()
+    $port.Write("$message`r")
+    $port.ReadLine()
+}
 $z = new-Object String(26, 1)
 $port.Write("`r")
 $port.Write($z)
