@@ -31,5 +31,6 @@ ___
 
 - Diagram
 - Pictures with capacitor
+!!! note "Can't find good image online, refer to [Wiring SIM800L](./wiringsim800l.md) temporally." 
 
 {% include 'footer.md' %}
