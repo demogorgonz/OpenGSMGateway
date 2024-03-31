@@ -7,7 +7,7 @@ $Password = "P@ssw0rd"
 $MoveMailToFolder = "Junk"
 
 # Model Configuration (A6PRO, SIM800L) 
-$Model = "SIM800L"
+$Model = "A6PRO"
 
 # Call
 $CallDuration = "30"
