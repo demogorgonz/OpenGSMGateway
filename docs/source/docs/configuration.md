@@ -67,6 +67,7 @@ ___
 - `$false` or `$true`, however not all hardware support UCS2 over CSCS.
   - If disabled character limit is 160 
   - If enabled limit is 70 and will accept UTF8 characters.
+___
 
 ## Call
 
