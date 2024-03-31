@@ -13,6 +13,7 @@ ___
 ## Features
 
 - Multiplatform, works on both Linux & Windows (x86, x64, ARM)
+- [Multi hardware support](./supported-hardware.md)
 - API for Call & SMS
 - CLI for Call & SMS
 - Email2Call Alert
