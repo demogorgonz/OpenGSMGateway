@@ -2,7 +2,7 @@
 
 ### Supported and tested devices: 
 
-|                    Device                     |           URL            |     Device need 2A power or Capacitor      | `CSCS="UCS2"` Support (UTF8): |
+|                    Device                     |           URL            |     Device need 2A power or Capacitor      | `CSCS="UCS2"` (UTF8 Support): |
 | --------------------------------------------- | ------------------------ | ------------------------------------------ | --------------------- |
 | A6 GPRS Pro ![](files/a6_pro_transparent.png) | https://archive.is/ZP2cn | ❎     [Direct Wiring](./wiringa6.md)       | ❎                     |
 | SIM800L ![](files/SIM800L.png)                | https://archive.is/oS4Tp | ✅     [More info](./wiringsim800l.md)      | ✅                     |
