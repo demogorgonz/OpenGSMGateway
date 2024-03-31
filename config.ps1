@@ -10,7 +10,7 @@ $MoveMailToFolder = "Junk"
 $Model = "A6PRO"
 
 # Call
-$CallDuration = "5"
+$CallDuration = "30"
 
 # Baud Rate
 $BaudRate = "115200"
