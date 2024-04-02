@@ -75,7 +75,7 @@ ___
 
 - This is timer after which call is dropped. 
 
-!!! Note "Depending of carrier load or signal, it could take anywhere from 1 to ~5 seconds to establish call, this time is deducted from $CallDuration. Meaning the phone will ring for ~25s if establishing call took 5s." 
+!!! Note "Depending of carrier load or signal, it could take anywhere from 1 to ~5 seconds to establish call, this time is deducted from $CallDuration (default value `30`). Meaning the phone will ring for ~25s if establishing call took 5s." 
 
 ___
 

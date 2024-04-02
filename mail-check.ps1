@@ -1,6 +1,6 @@
-if(-not (Get-Module Mailozaurr -ListAvailable)){
+if (-not (Get-Module Mailozaurr -ListAvailable)) {
     Install-Module Mailozaurr -AllowClobber -Force
-    }
+}
 
 Import-Module -Name Mailozaurr -Force
 
@@ -17,7 +17,7 @@ if (!(Test-Path $file)) {
 . "$PSScriptRoot\config.ps1"
 
 # IMAP client
-if($SkipCertificateCheck -eq 'True'){[System.Net.ServicePointManager]::ServerCertificateValidationCallback = { $true }}
+if ($SkipCertificateCheck -eq 'true') { [System.Net.ServicePointManager]::ServerCertificateValidationCallback = { $true } }
 
 
 $Client = Connect-IMAP -Server $Server -Password $Password -UserName $Account -Port 993 -Options Auto

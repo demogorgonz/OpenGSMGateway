@@ -1,5 +1,5 @@
 # MAIL
-$SkipCertificateCheck = $False
+$SkipCertificateCheck = $false
 $Server = "mail.example.com"
 $Domain = "example.com"
 $Account = "alert@example.com"
