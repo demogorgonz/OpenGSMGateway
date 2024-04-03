@@ -8,7 +8,7 @@ cd $PSScriptRoot
 
 # Model configuration
 If ($Model -eq "A6PRO") { $Syntax = " `r" }
-ElseIf ($Model -eq "SIM800L") { $Syntax = "" }
+ElseIf ($Model -eq "SIM800") { $Syntax = "" }
 
 if ($IsWindows) {
     $port = new-Object System.IO.Ports.SerialPort COM$(Get-CimInstance Win32_PnPEntity | where {$_.Name -like 'USB Serial Port*' } |Select-Object Name | select-string \d+ | % { $_.matches.Value }), $BaudRate, None, 8, one

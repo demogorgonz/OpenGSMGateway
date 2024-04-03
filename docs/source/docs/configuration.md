@@ -10,7 +10,7 @@ $Account = "alert@example.com"
 $Password = "P@ssw0rd"
 $MoveMailToFolder = "Junk"
 
-# Model Configuration (A6PRO, SIM800L) 
+# Model Configuration (A6PRO, SIM800) 
 $Model = "A6PRO"
 
 # UTF Support
@@ -57,7 +57,7 @@ ___
 
 ### $Model
 
-- Select your device model for compatible syntax. Check [Supported Hardware](./supported-hardware.md)
+- Select your device model for compatible syntax.
 ___
 
 ## UTF Support

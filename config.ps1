@@ -6,7 +6,7 @@ $Account = "alert@example.com"
 $Password = "P@ssw0rd"
 $MoveMailToFolder = "Junk"
 
-# Model Configuration (A6PRO, SIM800L) 
+# Model Configuration (A6PRO, SIM800) 
 $Model = "A6PRO"
 
 # UTF Support
