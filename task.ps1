@@ -1,47 +1,22 @@
 # Enter PSScriptRoot
 cd $PSScriptRoot
 
-# Define and create queue files
-$Callfile = ".\queue\call.txt"
-$SMSfile  = ".\queue\sms.txt"
+# Init
+. "$PSScriptRoot\init.ps1"
 
-if (!(Test-Path $CALLfile)) {
-    New-Item -itemType File -Name $CALLfile -Force
-}
-if (!(Test-Path $SMSfile)) {
-    New-Item -itemType File -Name $SMSfile -Force
-}
-
-# Logs folder
-
-$LogsFolder = ".\logs"
-if (!(Test-Path $LogsFolder)) {
-    New-Item -Type Directory -Name $LogsFolder -Force
-}
-
-# Date Formats
-function logFileFormat() { 
-    $(Get-Date -Format "dd.MM.yyyy")
-}
-function LogFormat() { 
-    $( Get-Date -Format "HH:mm:ss dd.MM.yyyy" )
-}
-
-# Clean empty lines from queue 
-function CALLCleanEmptyLines() { 
-    (Get-Content $Callfile) | ? { $_ }  | Set-Content $Callfile
-}
-function SMSCleanEmptyLines() { 
-    (Get-Content $SMSfile) | ? { $_ }  | Set-Content $SMSfile
-}
+# Import config
+. "$PSScriptRoot\config.ps1"
 
 CallCleanEmptyLines
 SMSCleanEmptyLines
 
-$LockFilePath =  ".\Instance.Lock"
+# Remove lock if older than 10 minutes and retry tasks.
+Get-ChildItem -Path $PWD -Filter "Instance.Lock" -Force | Where-Object {$_.CreationTime -lt $((Get-Date).AddMinutes(-10))} | Remove-Item
 
-$Locked = $null -ne (Get-Item -Path $LockFilePath -EA 0)
 if ($Locked) {Exit}
+
+# Ping
+& ".\ping.ps1"
 
 # Lock
 New-Item -Path $LockFilePath

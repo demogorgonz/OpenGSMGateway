@@ -7,11 +7,8 @@ Import-Module -Name Mailozaurr -Force
 # Enter PSScriptRoot
 cd $PSScriptRoot
 
-# Define queue file
-$file = "./queue/call.txt"
-if (!(Test-Path $file)) {
-    New-Item -itemType File -Name $file -Force
-}
+# Init
+. "$PSScriptRoot\init.ps1"
 
 # Import config
 . "$PSScriptRoot\config.ps1"

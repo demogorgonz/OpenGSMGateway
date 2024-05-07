@@ -3,6 +3,9 @@ param([string]$number = '')
 # Enter PSScriptRoot
 cd $PSScriptRoot
 
+# Init
+. "$PSScriptRoot\init.ps1"
+
 # Import config
 . "$PSScriptRoot\config.ps1"
 
@@ -20,10 +23,25 @@ elseif ($IsLinux) {
 elseif ($IsMacOS) {
     Write-Host "macOS"
     # TODO - needs testing
-}   
+}
+
+try {
 $port.open()
 $port.WriteLine("ATD$number;$Syntax")
 Start-Sleep $CallDuration
-$Port.WriteLine("AT+CHUP;$Syntax")    
-$port.Close()
+$output = $port.ReadExisting()
+ForEach ($line in $output) {
+  
+    if ( $line.contains("ERR")) {
+        Throw "ERROR IN COMMAND: $line"
+    }
+}
+}
+catch {
+    Add-Content -Path $ErrLogFile -Value $("CALL [" + (LogFormat) + "] " + "`n" + $_.Exception.Message)
+    $port.Close()
+    Throw "ERROR FOUND $line"
 
+}
+$Port.WriteLine("AT+CHUP;$Syntax")
+$port.Close()

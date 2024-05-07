@@ -1,3 +1,6 @@
+# Ping Device
+$PingDevice = $true
+
 # MAIL
 $SkipCertificateCheck = $false
 $Server = "mail.example.com"

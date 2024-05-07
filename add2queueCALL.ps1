@@ -5,10 +5,7 @@ param(
 # Enter PSScriptRoot
 cd $PSScriptRoot
 
-# Define queue file
-$CALLfile = ".\queue\call.txt"
-if (!(Test-Path $CALLfile)) {
-    New-Item -itemType File -Name $CALLfile -Force
-}
+# Init
+. "$PSScriptRoot\init.ps1"
 
 $number | Out-File -Append $CALLfile
