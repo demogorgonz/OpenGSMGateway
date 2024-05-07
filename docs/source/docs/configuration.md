@@ -31,7 +31,7 @@ ___
 ## Ping Device
 
 ### PingDevice
-- Switch for enabling device ping / availability check.
+- Switch for enabling device ping / port availability check.
 
 ___
 
