@@ -6,10 +6,7 @@ param(
 # Enter PSScriptRoot
 cd $PSScriptRoot
 
-# Define queue file
-$SMSfile = ".\queue\sms.txt"
-if (!(Test-Path $SMSfile)) {
-    New-Item -itemType File -Name $SMSfile -Force
-}
+# Init
+. "$PSScriptRoot\init.ps1"
 
 "$number`:$message" | Out-File -Append $SMSfile

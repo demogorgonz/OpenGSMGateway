@@ -6,6 +6,9 @@ param(
 # Enter PSScriptRoot
 cd $PSScriptRoot
 
+# Init
+. "$PSScriptRoot\init.ps1"
+
 # Import config
 . "$PSScriptRoot\config.ps1"
 
@@ -28,6 +31,8 @@ elseif ($IsMacOS) {
     Write-Host "MacOS"
     # TODO - needs testing
 }
+
+try {
 $port.open()
 $port.Write("AT+CMGF=1`r")
 Start-Sleep 5
@@ -56,5 +61,19 @@ $z = new-Object String(26, 1)
 $port.Write("`r")
 $port.Write($z)
 Start-Sleep 1
+$output = $port.ReadExisting()
+ForEach ($line in $output) {
+  
+    if ( $line.contains("ERR")) {
+        Throw "ERROR IN COMMAND: $line"
+    }
+}
+}
+catch {
+    Add-Content -Path $ErrLogFile -Value $("SMS [" + (LogFormat) + "] " + "`n" + $_.Exception.Message)
+    $port.Close()
+    Throw "ERROR FOUND $line"
+
+}
 $port.Close()
 Start-Sleep 1

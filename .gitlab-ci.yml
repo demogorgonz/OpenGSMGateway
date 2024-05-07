@@ -3,4 +3,6 @@ docs:
     include: docs/.gitlab-ci.yml
     strategy: depend
   only:
-    changes: [ docs/**/* ]   
+    changes: [ docs/**/* ]
+    refs:
+      - main
