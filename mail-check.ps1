@@ -43,7 +43,7 @@ function Get-Headers {
 foreach ($line in $(Get-Headers | Select-String -Pattern [a-zA-Z0-9_.-]+@$domain | foreach { $_.Matches.Value }) | Get-Unique ) {
     if ($contacts.ContainsKey($line)) {
         $phone = $contacts[$line]
-        $phone | Out-File -Append $file -Force
+        $phone | Out-File -Append $Callfile -Force
     }
 }
 
