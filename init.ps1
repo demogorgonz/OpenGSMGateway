@@ -27,8 +27,12 @@ function LogFormat() {
     $( Get-Date -Format "HH:mm:ss dd.MM.yyyy" )
 }
 
+# Received SMS Log
+$ReceivedSMSFileLog = ".\$LogsFolder\receivedSMS-$(logFileFormat).log"
+
 # Error file
 $ErrLogFile = ".\$LogsFolder\error-$(logFileFormat).log"
+
 
 
 # Clean empty lines from queue 

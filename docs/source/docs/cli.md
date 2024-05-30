@@ -6,12 +6,16 @@
 .\serialCall.ps1 -number 123456789
 ```
 
-### SMS
+### Send SMS
 
 ```powershell
 .\serialSMS.ps1 -number 0123456789 -message 'Hello from OGG!'
 ```
+### Read SMS & Delete old
 
+```powershell
+.\serialReadSMS.ps1
+```
 ___
 
 ## CLI add2queue

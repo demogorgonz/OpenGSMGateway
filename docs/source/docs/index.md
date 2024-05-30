@@ -18,3 +18,4 @@ ___
 - API for Call & SMS
 - CLI for Call & SMS
 - Email2Call Alert
+- Read SMS (Check [Supported Hardware](https://opengsmgateway.com/supported-hardware.html))
