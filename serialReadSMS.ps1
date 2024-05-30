@@ -31,4 +31,4 @@ $ParseOutput = Get-Content $ReceivedSMSFileLog | Select-String -Pattern 'CMGL' -
 $ParseOutput -replace "`n","" -replace "`r","" -match "\d" -replace '.+?(UNREAD",")','' -replace '"','' -replace ',,',' ' -replace ',',' ' 
 $port.Write("AT+CMGDA=`"DEL ALL`" `r")
 $port.Close()
-Start-Sleep 1
+Start-Sleep 5
