@@ -34,7 +34,6 @@ $ReceivedSMSFileLog = ".\$LogsFolder\receivedSMS-$(logFileFormat).log"
 $ErrLogFile = ".\$LogsFolder\error-$(logFileFormat).log"
 
 
-
 # Clean empty lines from queue 
 function CALLCleanEmptyLines() { 
     (Get-Content $Callfile) | ? { $_ }  | Set-Content $Callfile
