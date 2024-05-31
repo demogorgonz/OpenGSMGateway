@@ -5,7 +5,7 @@
 # Ping Device
 $PingDevice = $true
 
-# MAIL
+# Email2Call
 $SkipCertificateCheck = $False
 $Server = "mail.example.com"
 $Domain = "example.com"
@@ -35,7 +35,7 @@ ___
 
 ___
 
-## MAIL
+## Email2Call
 
 #### SkipCertificateCheck
 
