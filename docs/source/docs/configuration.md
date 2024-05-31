@@ -31,7 +31,7 @@ ___
 ## Ping Device
 
 ### PingDevice
-- Switch for enabling device ping / port availability check.
+- Switch for enabling device ping / port availability check. Ping can prevent device sleep, it is recommended to be `$true`.
 
 ___
 
