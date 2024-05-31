@@ -1,3 +1,4 @@
+$ErrorActionPreference = "Stop"
 # Enter PSScriptRoot
 cd $PSScriptRoot
 
@@ -19,6 +20,9 @@ elseif ($IsMacOS) {
     Write-Host "MacOS"
     # TODO - needs testing
 }
+
+# Ping
+& ".\ping.ps1"
 
 $port.open()
 $port.Write("AT+CMGF=1`r")
