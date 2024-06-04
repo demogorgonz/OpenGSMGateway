@@ -13,7 +13,7 @@ cd $PSScriptRoot
 If ($Model -eq "A6PRO") { $Syntax = " `r" }
 ElseIf ($Model -eq "SIM800") { $Syntax = "" }
 
-# Select USB port depending on OS
+# Select USB port
 Get-Port
 
 try {

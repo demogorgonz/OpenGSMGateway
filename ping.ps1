@@ -9,7 +9,7 @@ cd $PSScriptRoot
 
 if ($PingDevice -eq 'true') {
     try {
-        # Select USB port depending on OS
+        # Select USB port
         Get-Port
         $port.Open()
         start-sleep 5

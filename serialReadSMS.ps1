@@ -8,7 +8,7 @@ cd $PSScriptRoot
 # Import config
 . "$PSScriptRoot\config.ps1"
 
-# Select USB port depending on OS
+# Select USB port
 Get-Port
 
 # Ping

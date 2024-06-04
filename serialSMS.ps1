@@ -20,7 +20,7 @@ if ($UTF) {
     $messageHEX = $($message | ConvertTo-HexString -Encoding BigEndianUnicode -Delimiter '')
 }
 
-# Select USB port depending on OS
+# Select USB port
 Get-Port
 
 try {
