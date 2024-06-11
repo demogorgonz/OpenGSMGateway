@@ -1,4 +1,4 @@
-﻿# Open GSM Gateway
+﻿# Open Source GSM Gateway
 
 Selfhost SMS & Call gateway
 ___
