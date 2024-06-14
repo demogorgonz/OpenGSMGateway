@@ -2,7 +2,7 @@
 
 !!! danger "Make sure to switch to 5V on USB2TTL serial adapter" 
 
-![notice](files/FT232BL_pinout_transparent.drawio.png)
+![FTDI FT232BL Pinout](files/FT232BL_pinout_transparent.drawio.png)
 
 ## Wiring USB2TTL
 

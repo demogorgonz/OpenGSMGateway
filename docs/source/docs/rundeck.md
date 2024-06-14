@@ -8,7 +8,7 @@ ___
 
 `http://FQDN:8080/call?number=XXXXXX`
 
-![](files/RundeckCall.png) 
+![Rundeck](files/RundeckCall.png) 
 
 ___
 
