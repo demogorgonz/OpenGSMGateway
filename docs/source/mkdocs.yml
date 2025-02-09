@@ -135,9 +135,9 @@ nav:
 - Home: index.md
 - Hardware:
     - Supported Hardware: supported-hardware.md 
-    - Wiring A6 PRO: wiringa6.md
     - Wiring SIM800L: wiringsim800l.md
     - Wiring SIM800L Blue: wiringsim800l-blue.md
+    - Wiring A6 PRO: wiringa6.md    
 - Getting Started:     
     - Prerequisites: prerequisites.md
     - Installation: installation.md
