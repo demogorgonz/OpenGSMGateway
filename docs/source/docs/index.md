@@ -15,7 +15,7 @@ ___
 - Multiplatform, works on both Linux & Windows (x86, x64, ARM)
 - [Multi hardware support](./supported-hardware.md)
 - UTF8 Characters supported on some devices over `CSCS="UCS2"` - [Supported Hardware](./supported-hardware.md)
-- Web Interface for Call & SMS
+- WebUI Interface for Call & SMS
 - API for Call & SMS
 - CLI for Call & SMS
 - Email2Call Alert

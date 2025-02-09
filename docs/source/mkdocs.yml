@@ -142,7 +142,7 @@ nav:
     - Prerequisites: prerequisites.md
     - Installation: installation.md
     - Configuration: configuration.md
-    - Web: web.md
+    - WebUI: web.md
     - CLI: cli.md
     - API: api.md
     - Running as service: service.md
