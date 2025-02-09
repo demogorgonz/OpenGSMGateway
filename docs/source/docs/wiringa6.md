@@ -13,7 +13,7 @@
 | TX  | to | RX  |
 
 !!! info "This device needs external power supply"
-!!! info "Seems like device can read SMS while serial is attached, but there is not way to retrieve SMS on command"
+!!! info "Seems like device can read SMS while serial is attached, but there is no way to retrieve SMS on command"
 
 ![FTDI FT232BL A6PRO Wiring Pinout](files/WiringFT232BL-A6.png)
 
