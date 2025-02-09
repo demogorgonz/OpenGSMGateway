@@ -6,6 +6,10 @@ Start-PodeServer -Threads 4 -RootPath "$PWD" {
     Add-PodeEndpoint -Address * -Port 8080 -Protocol Http 
     New-PodeLoggingMethod -Terminal | Enable-PodeErrorLogging -Levels @("Error", "Warning")
     
+    Add-PodeRoute -Method Get -Path '/' -ScriptBlock {
+        Write-PodeViewResponse -Path 'index'
+    }
+    
     Add-PodeRoute -Method Get -Path '/call' -ScriptBlock {
         & "$PSScriptRoot\add2queueCALL.ps1" -number $WebEvent.Query['number']
     }

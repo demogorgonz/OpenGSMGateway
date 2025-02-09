@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenGSMGateway Web</title>
+</head>
+<center>
+<body>
+
+    <style>
+        /* General body styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+    
+        /* Center the content and add some padding */
+        center {
+            width: 100%;
+        }
+    
+        /* Header styles */
+        h2 {
+            color: #4CAF50;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+    
+        /* Form container */
+        form {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 20px;
+            width: 100%;
+            max-width: 500px;
+            text-align: left;
+        }
+    
+        /* Input fields */
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+    
+        /* Button styles */
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+    
+        button:hover {
+            background-color: #45a049;
+        }
+    
+        /* Form labels */
+        label {
+            font-size: 16px;
+            margin-bottom: 5px;
+            display: block;
+            color: #333;
+        }
+    
+        /* Spacer between sections */
+        hr {
+            border: 0;
+            border-top: 2px solid #f4f4f9;
+            margin: 20px 0;
+        }
+    
+        /* Textarea specific styles */
+        textarea {
+            resize: vertical;
+            height: 120px;
+        }
+    
+        /* Mobile responsiveness */
+        @media screen and (max-width: 600px) {
+            form {
+                width: 90%;
+            }
+    
+            h2 {
+                font-size: 20px;
+            }
+    
+            button {
+                font-size: 14px;
+            }
+        }
+    </style>
+
+    <h2>Call</h2>
+    <form id="apiForm" method="GET">
+        <label for="apiNumber">Enter Phone Number:</label>
+        <input type="text" id="apiNumber" name="number" placeholder="XXXXXXXXXX" required>
+        <button type="submit">Call</button>
+    </form>
+
+    <script>
+        // This script sets the action URL of the form dynamically to the current browser URL
+        document.getElementById('apiForm').action = window.location.origin + '/call';
+
+        document.getElementById('apiForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const number = document.getElementById('apiNumber').value;
+            const url = window.location.origin + '/call?number=' + encodeURIComponent(number);
+
+            // Make the GET request
+            fetch(url)
+                .then(response => response.text())
+                .then(data => {
+                    console.log('Response:', data);
+                    alert('Request successful!');
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred.');
+                });
+        });
+    </script>
+
+    <h2>Send SMS</h2>
+    <form id="smsForm" method="GET">
+        <label for="smsNumber">Phone Number:</label><br>
+        <input type="text" id="smsNumber" name="number" placeholder="XXXXXXXXXX" required><br><br>
+    
+        <label for="message">Message:</label><br>
+        <textarea id="message" name="message" placeholder="Text message here!" required></textarea><br><br>
+    
+        <button type="submit">Send SMS</button>
+    </form>
+    
+    <script>
+        // Dynamically set the form's action to the current URL with the appropriate port and endpoint
+        document.getElementById('smsForm').action = window.location.origin + '/sms';
+    
+        document.getElementById('smsForm').addEventListener('submit', function(event) {
+            event.preventDefault();  // Prevent form's default submission
+    
+            // Get the values from the input fields
+            const number = document.getElementById('smsNumber').value;
+            const message = document.getElementById('message').value;
+    
+            // Prepare the GET request URL by appending the form data as query parameters
+            const url = document.getElementById('smsForm').action + '?number=' + encodeURIComponent(number) + '&message=' + encodeURIComponent(message);
+    
+            // Make the GET request using the Fetch API
+            fetch(url)
+                .then(response => response.text())
+                .then(data => {
+                    console.log('Response:', data);
+                    alert('Message sent successfully!');
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Failed to send the message.');
+                });
+        });
+    </script>
+</body>
+</center>
+</html>
