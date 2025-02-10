@@ -133,12 +133,12 @@ plugins:
       exclude:
 nav:
 - Home: index.md
-- Hardware:
+- Hardware ⚙️:
     - Supported Hardware: supported-hardware.md 
     - Wiring SIM800L: wiringsim800l.md
     - Wiring SIM800L Blue: wiringsim800l-blue.md
     - Wiring A6 PRO: wiringa6.md    
-- Getting Started:     
+- Getting Started 📖:     
     - Prerequisites: prerequisites.md
     - Installation: installation.md
     - Configuration: configuration.md
@@ -147,7 +147,7 @@ nav:
     - API: api.md
     - Running as service: service.md
     - Troubleshooting: troubleshoot.md
-- Integrations:
+- Integrations 🔗:
     - Rundeck: rundeck.md    
-- Donate: donate.md
-- About OGG: about.md
+- Donate 💵: donate.md
+- About OGG 💡: about.md
