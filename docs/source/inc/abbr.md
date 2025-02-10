@@ -10,3 +10,8 @@
 *[FQDN]:        Fully Qualified Domain Name
 *[BaudRate]:    A number related to the speed of data transmission in a system.
 *[OGG]:         Open GSM Gateway
+*[OS]:          Operating System
+*[OSs]:         Operating Systems
+*[UPS]:         Uninterruptible Power Supply
+*[ToS]:         Terms of service
+*[SIM]:         Subscriber Identity Module
