@@ -20,6 +20,7 @@ ___
 
 - SIM800L needs external power supply 5V/2A
 - This can be bypassed with capacitor 16V 2200uF and provide stability during Calls & SMS due to higher power draw.
+    - !!! danger "Soldering could be dangerous due to high heat 🔥 and fume exhausts 💨, so if unsure how to do it properly you could ask local repair shop to do it for you!"
 
 ## Capacitor Wiring
 
