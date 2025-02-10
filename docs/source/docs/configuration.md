@@ -121,25 +121,35 @@ Start-PodeServer -Threads 4 -RootPath "$PWD" {
 
     Add-PodeEndpoint -Address * -Port 8080 -Protocol Http 
     New-PodeLoggingMethod -Terminal | Enable-PodeErrorLogging -Levels @("Error", "Warning")
+
+    # WebUI, served from views directory
+    Add-PodeRoute -Method Get -Path '/' -ScriptBlock {
+        Write-PodeViewResponse -Path 'index'
+    }    
     
+    # Add Call to queue processing
     Add-PodeRoute -Method Get -Path '/call' -ScriptBlock {
         & "$PSScriptRoot\add2queueCALL.ps1" -number $WebEvent.Query['number']
     }
  
+    # Add SMS to queue processing
     Add-PodeRoute -Method Get -Path '/sms' -ScriptBlock {
         $parameters = $WebEvent.Query
         Write-Output $parameters
         $result = (& "$PSScriptRoot\add2queueSMS.ps1" @parameters)
     }
 
+    # Lock file handling on startup
     Add-PodeSchedule -Name 'startup-remove-lock' -Cron '*/1 * * * *' -Limit 1 -ScriptBlock {
         pwsh -Command "Remove-Item `"$using:PWD\Instance.Lock`" -Force"
     }
-
+    
+    # Mail check feature
     Add-PodeSchedule -Name 'mail-check' -Cron '*/1 * * * *' -ScriptBlock {
         pwsh -File "$using:PWD/mail-check.ps1"
     }
 
+    # Task scheduler - processing of queue
     Add-PodeSchedule -Name 'task' -Cron '*/1 * * * *' -ScriptBlock {
         pwsh -File "$using:PWD/task.ps1"
     }
