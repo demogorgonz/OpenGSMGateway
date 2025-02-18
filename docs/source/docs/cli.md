@@ -11,7 +11,10 @@
 ```powershell
 .\serialSMS.ps1 -number 0123456789 -message 'Hello from OGG!'
 ```
+
 ### Read SMS & Delete old
+
+Following script will read all SMS messages, store them in log file and **delete** from SIM card's memory to free up space for new messages.
 
 ```powershell
 .\serialReadSMS.ps1
