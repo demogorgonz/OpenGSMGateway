@@ -16,7 +16,7 @@
     ```
 ___
 
-## SMS
+## Send SMS
 
 ===  "PowerShell"
 
