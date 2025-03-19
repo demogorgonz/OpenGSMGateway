@@ -180,6 +180,51 @@
                 });
         });
     </script>
+
+<h2>Send Template SMS</h2>
+<form id="smsFormTemplate" method="GET">
+    <label for="smsNumber">Phone Number:</label><br>
+    <input type="text" id="smsNumberTemplate" name="number" placeholder="XXXXXXXXXX" required><br><br>
+
+    <label for="dropdown">Select Message:</label><br>
+    <select id="dropdown" name="message" required>
+        <option value="Template - Example 1">Template - Example 1</option>
+        <option value="Template - Example 2">Template - Example 2</option>
+        <option value="Template - Example 3">Template - Example 3</option>
+        <option value="Template - Example 4">Template - Example 4</option>
+        <option value="Template - Example 555555555555">Template - Example 555555555555</option>
+    </select><br><br>
+
+    <button type="submit">Send SMS</button>
+</form>
+
+<script>
+    // Dynamically set the form's action to the current URL with the appropriate port and endpoint
+    document.getElementById('smsFormTemplate').action = window.location.origin + '/sms';
+
+    document.getElementById('smsFormTemplate').addEventListener('submit', function(event) {
+        event.preventDefault();  // Prevent form's default submission
+
+        // Get the values from the input fields
+        const number = document.getElementById('smsNumberTemplate').value;
+        const message = document.getElementById('dropdown').value;
+
+        // Prepare the GET request URL by appending the form data as query parameters
+        const url = document.getElementById('smsFormTemplate').action + '?number=' + encodeURIComponent(number) + '&message=' + encodeURIComponent(message);
+
+        // Make the GET request using the Fetch API
+        fetch(url)
+            .then(response => response.text())
+            .then(data => {
+                console.log('Response:', data);
+                alert('Message sent successfully!');
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to send the message.');
+            });
+    });
+</script>    
 </body>
 </center>
 </html>
