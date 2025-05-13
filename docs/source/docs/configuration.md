@@ -14,10 +14,10 @@ $Password = "P@ssw0rd"
 $MoveMailToFolder = "Junk"
 
 # Model Configuration (A6PRO, SIM800) 
-$Model = "A6PRO"
+$Model = "SIM800"
 
 # UTF Support
-$UTF = $false
+$UTF = $true
 
 # Call
 $CallDuration = "30"
