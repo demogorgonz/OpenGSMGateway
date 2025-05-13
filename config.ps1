@@ -9,11 +9,11 @@ $Account = "alert@example.com"
 $Password = "P@ssw0rd"
 $MoveMailToFolder = "Junk"
 
-# Model Configuration (A6PRO, SIM800) 
-$Model = "A6PRO"
+# Model Configuration (A6PRO, A7670E, SIM800) 
+$Model = "SIM800"
 
 # UTF Support
-$UTF = $false
+$UTF = $true
 
 # Call
 $CallDuration = "30"

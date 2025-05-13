@@ -1,70 +1,103 @@
 param(
     [string]$number = '',
     [string]$message = ''
-) 
+)
 
-# Enter PSScriptRoot
+$ErrorActionPreference = "Stop"
+
 cd $PSScriptRoot
-
-# Init
 . "$PSScriptRoot\init.ps1"
-
-# Import config
 . "$PSScriptRoot\config.ps1"
 
-# UTF
-
-if ($UTF) { 
-    . "$PSScriptRoot\ConvertTo-HexString.ps1" 
-    $numberHEX = $($number | ConvertTo-HexString -Encoding BigEndianUnicode -Delimiter '')
-    $messageHEX = $($message | ConvertTo-HexString -Encoding BigEndianUnicode -Delimiter '')
+if ($UTF) {
+    . "$PSScriptRoot\ConvertTo-HexString.ps1"
+    $numberHEX = $number | ConvertTo-HexString -Encoding BigEndianUnicode -Delimiter ''
+    $messageHEX = $message | ConvertTo-HexString -Encoding BigEndianUnicode -Delimiter ''
 }
 
-# Select USB port
+# Get correct line ending
+if ($Model -eq "A6PRO") {
+    $Syntax = " `r"
+}
+elseif ($Model -eq "SIM800") {
+    $Syntax = "`r"
+}
+elseif ($Model -eq "A7670E") {
+    $Syntax = "`r`n"
+}
+
+# Select serial port
 Get-Port
 
 try {
-$port.open()
-$port.Write("AT+CMGF=1`r")
-Start-Sleep 5
-$port.ReadLine()
-If ($UTF) {
-    $port.Write("AT+CSCS=`"UCS2`"`r")
-    $port.ReadLine()
-    Start-Sleep 1
-    $port.Write("AT+CSMP=17,168,0,8`r")
-    $port.ReadLine()
-    Start-Sleep 1
-    $port.Write("AT+CMGS=`"$numberHEX`"`r")
-    Start-Sleep 1
-    $port.Write("$messageHEX`r")
-    $port.ReadLine()
+    $port.Open()
 
-}
-else {
-    $port.Write("AT+CMGS=`"$number`"`r")
-    Start-Sleep 1
-    $port.ReadLine()
-    $port.Write("$message`r")
-    $port.ReadLine()
-}
-$z = new-Object String(26, 1)
-$port.Write("`r")
-$port.Write($z)
-Start-Sleep 1
-$output = $port.ReadExisting()
-ForEach ($line in $output) {
-  
-    if ( $line.contains("ERR")) {
-        Throw "ERROR IN COMMAND: $line"
+    # Set text mode
+    $port.Write("AT+CMGF=1$Syntax")
+    Start-Sleep -Milliseconds 300
+    $null = $port.ReadExisting()
+
+    if ($UTF) {
+        $port.Write("AT+CSCS=`"UCS2`"$Syntax")
+        Start-Sleep -Milliseconds 300
+        $null = $port.ReadExisting()
+
+        $port.Write("AT+CSMP=17,168,0,8$Syntax")
+        Start-Sleep -Milliseconds 300
+        $null = $port.ReadExisting()
+
+        # Send AT+CMGS with UCS2 phone number
+        $port.Write("AT+CMGS=`"$numberHEX`"$Syntax")
+        Start-Sleep -Milliseconds 1000
+
+        # Wait for prompt
+        $response = ""
+        $timeout = [datetime]::Now.AddSeconds(10)
+        while ([datetime]::Now -lt $timeout -and $response -notmatch ">") {
+            Start-Sleep -Milliseconds 200
+            $response += $port.ReadExisting()
+        }
+
+        # Send encoded message + Ctrl+Z
+        $port.Write($messageHEX)
+        Start-Sleep -Milliseconds 300
+        $port.Write([char]26)
+    } else {
+        $port.Write("AT+CMGS=`"$number`"$Syntax")
+        Start-Sleep -Milliseconds 1000
+
+        # Wait for prompt
+        $response = ""
+        $timeout = [datetime]::Now.AddSeconds(10)
+        while ([datetime]::Now -lt $timeout -and $response -notmatch ">") {
+            Start-Sleep -Milliseconds 200
+            $response += $port.ReadExisting()
+        }
+
+        if ($response -notmatch ">") {
+            throw "❌ ERROR: Modem did not respond with '>' prompt. Response: $response"
+        }
+
+        $port.Write($message)
+        Start-Sleep -Milliseconds 300
+        $port.Write([char]26)
+    }
+
+    Start-Sleep -Seconds 5
+    $output = $port.ReadExisting()
+
+    if ($output -match "ERROR") {
+        throw "❌ Modem error: $output"
+    } else {
+        Write-Host "✅ SMS sent successfully:"
+        Write-Host $output
     }
 }
-}
 catch {
-    Add-Content -Path $ErrLogFile -Value $("SMS [" + (LogFormat) + "] " + "`n" + $_.Exception.Message)
-    $port.Close()
-    Throw "ERROR FOUND $line"
-
+    Add-Content -Path $ErrLogFile -Value $("SMS [" + (Get-Date -Format "yyyy-MM-dd HH:mm:ss") + "] " + $_.Exception.Message)
+    throw "❌ ERROR: $_"
 }
-$port.Close()
-Start-Sleep 1
+finally {
+    $port.Close()
+    Start-Sleep -Seconds 1
+}

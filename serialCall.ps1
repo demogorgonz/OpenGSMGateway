@@ -10,29 +10,36 @@ cd $PSScriptRoot
 . "$PSScriptRoot\config.ps1"
 
 # Model configuration
-If ($Model -eq "A6PRO") { $Syntax = " `r" }
-ElseIf ($Model -eq "SIM800") { $Syntax = "" }
+if ($Model -eq "A6PRO") {
+    $Syntax = " `r"
+}
+elseif ($Model -eq "SIM800") {
+    $Syntax = ""
+}
+elseif ($Model -eq "A7670E") {
+    $Syntax = "`r`n"
+}
 
 # Select USB port
 Get-Port
 
 try {
-$port.open()
-$port.WriteLine("ATD$number;$Syntax")
-Start-Sleep $CallDuration
-$output = $port.ReadExisting()
-ForEach ($line in $output) {
-  
-    if ( $line.contains("ERR")) {
-        Throw "ERROR IN COMMAND: $line"
+    $port.Open()
+    $port.WriteLine("ATD$number;$Syntax")
+    Start-Sleep $CallDuration
+    $output = $port.ReadExisting()
+
+    foreach ($line in $output) {
+        if ($line.Contains("ERR")) {
+            Throw "ERROR IN COMMAND: $line"
+        }
     }
-}
 }
 catch {
     Add-Content -Path $ErrLogFile -Value $("CALL [" + (LogFormat) + "] " + "`n" + $_.Exception.Message)
     $port.Close()
     Throw "ERROR FOUND $line"
-
 }
-$Port.WriteLine("AT+CHUP;$Syntax")
+
+$port.WriteLine("AT+CHUP$Syntax")
 $port.Close()
