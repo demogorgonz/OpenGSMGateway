@@ -142,10 +142,10 @@ nav:
     - Prerequisites: prerequisites.md
     - Installation: installation.md
     - Configuration: configuration.md
+    - Running as service: service.md        
     - WebUI: web.md
     - CLI: cli.md
     - API: api.md
-    - Running as service: service.md
     - Troubleshooting: troubleshoot.md
 - Integrations 🔗:
     - Rundeck: rundeck.md    
