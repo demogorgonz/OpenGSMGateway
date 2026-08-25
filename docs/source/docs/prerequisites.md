@@ -1,4 +1,4 @@
-﻿# Prerequisites
+# Prerequisites
 
 - OS: Windows or Linux (ARM is supported, e.g. RPI)
 - GSM module with SIM card (Check [supported hardware page](supported-hardware.md))
@@ -10,7 +10,7 @@ ___
 # Software Prerequisites
 
 - PowerShell
-    - Installed [Pode](https://badgerati.github.io/Pode/Getting-Started/Installation/#minimum-requirements) module (for API purposes)
+    - Installed [Pode](https://pode.readthedocs.io/en/latest/Getting-Started/Installation/) module (for API purposes)
     - Mailozaurr (**Optional** | Will be installed during mail script run) 
 - [GIT](https://git-scm.com/downloads) (**Optional**)
 - [Chocolatey](https://chocolatey.org/install) (**Optional | Windows only**)
